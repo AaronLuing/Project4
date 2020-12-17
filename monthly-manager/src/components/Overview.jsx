@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 // knowledge on how to add values for total from 
 // https://stackoverflow.com/questions/54121602/displaying-the-sum-of-values-in-react-jsx/54121633
@@ -10,7 +10,8 @@ export default class Overview extends Component {
     super(props)
     this.state = {
       expenses: [],
-      budget: ''
+      budget: '',
+      logout: false
     }
   }
   componentDidMount() {
@@ -32,10 +33,23 @@ export default class Overview extends Component {
     })
   }
 
+  logOut() {
+    axios.get('http://localhost:8000/user/logout')
+    .then(() => {
+      this.setState({
+        logout: true
+      })
+    })
+  }
+
   render() {
+    if(this.state.logout === true) {
+      return <Redirect to='/' />
+    }
     return (
       <div>
     <h3>Welcome, {sessionStorage.username}</h3>
+    <button onClick={this.logOut}>Log Out</button>
     <Link to='/newexpense'>
       <h4>Add an expense</h4>
     </Link>
