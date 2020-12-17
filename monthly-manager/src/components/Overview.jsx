@@ -11,7 +11,8 @@ export default class Overview extends Component {
     this.state = {
       expenses: [],
       budget: '',
-      logout: false
+      logout: false,
+      deleted: false
     }
   }
   componentDidMount() {
@@ -42,9 +43,26 @@ export default class Overview extends Component {
     })
   }
 
+  deleteExpense(id) {
+    // event.preventDefault()
+    axios.delete('http://localhost:8000/api/v1/budget/' + id)
+    .then(() => {
+      this.setState({
+        deleted: true
+      })
+    })
+  }
+
+  updateRoute() {
+    <Redirect to='/update' />
+  }
+
   render() {
     if(this.state.logout === true) {
       return <Redirect to='/' />
+    }
+    if(this.state.deleted === true) {
+      window.location.reload(true)
     }
     return (
       <div>
@@ -62,7 +80,8 @@ export default class Overview extends Component {
         <ul>
           {this.state.expenses.map((expense) =>
           <li key={expense.id}>
-            {expense.name} | ${expense.amount}
+            {expense.name} | ${expense.amount} | 
+            <button onClick={this.deleteExpense.bind(this, expense.id)}>Delete Item</button>
           </li>
           )}
         </ul>
