@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Login from './components/Login'
 import Overview from './components/Overview'
 import Startup from './pages/Startup'
+import NewExpense from './pages/NewExpense'
 
 export default class App extends Component {
   render() {
@@ -15,6 +16,7 @@ export default class App extends Component {
             <Route path='/' exact component={Startup} />
             <Route path='/login' component={Login} />
             <Route path='/overview' component={Overview} />
+            // <Route path='/newexpense' component={NewExpense} />
           </Switch>
         </Router>
       </div>

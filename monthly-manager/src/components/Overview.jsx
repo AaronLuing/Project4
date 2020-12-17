@@ -30,9 +30,6 @@ export default class Overview extends Component {
       this.setState({expenses: storage})
     })
   }
-  // getOneExpense(id) {
-  //   axios.get('http://localhost:8000/api/v1/budget', id)
-  // }
 
   render() {
     return (
