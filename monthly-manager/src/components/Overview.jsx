@@ -19,8 +19,8 @@ export default class Overview extends Component {
     .then(res => {
       console.log(res.data.data)
       res.data.data.map((item) => {
-        console.log(item.profile.id)
-        if(item.profile.id == sessionStorage.id){
+        console.log(item)
+        if(item.userid == sessionStorage.id){
           console.log("Yippee!")
           storage.push(item)
           return
