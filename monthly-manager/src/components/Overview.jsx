@@ -11,7 +11,7 @@ export default class Overview extends Component {
     this.state = {
       expenses: [],
       budget: '',
-      logout: false,
+      logout: null,
       deleted: false
     }
   }
@@ -38,7 +38,7 @@ export default class Overview extends Component {
     axios.get('http://localhost:8000/user/logout')
     .then(() => {
       this.setState({
-        logout: true
+        logout: true,
       })
     })
   }
@@ -67,7 +67,7 @@ export default class Overview extends Component {
     return (
       <div>
     <h3>Welcome, {sessionStorage.username}</h3>
-    <button onClick={this.logOut}>Log Out</button>
+    <button onClick={this.logOut.bind(this)}>Log Out</button>
     <Link to='/newexpense'>
       <h4>Add an expense</h4>
     </Link>
@@ -89,3 +89,4 @@ export default class Overview extends Component {
     )
   }
 }
+
