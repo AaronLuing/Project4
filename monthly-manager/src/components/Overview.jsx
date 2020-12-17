@@ -8,7 +8,8 @@ export default class Overview extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      expenses: []
+      expenses: [],
+      budget: ''
     }
   }
   componentDidMount() {
@@ -18,32 +19,31 @@ export default class Overview extends Component {
       console.log(res.data.data)
       res.data.data.map((item) => {
         console.log(item.profile.id)
-        // newArray = []
         if(item.profile.id == sessionStorage.id){
           console.log("Yippee!")
           storage.push(item)
           return
         }
       })
-      // this.setState({expenses: res.data.data})
-      console.log(this.state.expenses)
-      // this.setState({expenses: res.data.data})
     })
     .then(() => {
       this.setState({expenses: storage})
     })
   }
+  // getOneExpense(id) {
+  //   axios.get('http://localhost:8000/api/v1/budget', id)
+  // }
 
   render() {
     return (
       <div>
-        <h3>Your Monthly Expenses</h3>
     <h3>Welcome, {sessionStorage.username}</h3>
     <h5>{this.state.expenses.name}</h5>
         <h4>
           You are currently spending 
           ${this.state.expenses.reduce((totalAmount, expense) => totalAmount + expense.amount, 0)} a month
         </h4>
+
         <ul>
           {this.state.expenses.map((expense) =>
           <li key={expense.id}>

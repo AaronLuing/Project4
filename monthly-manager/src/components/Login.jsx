@@ -27,15 +27,6 @@ export default class Login extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    // .then(res => {
-    //   console.log(res)
-    //   const token = res.data.token
-    //   const decoded = jwt_decode(token)
-    //   sessionStorage.setItem('userAuthToken', token)
-    //   sessionStorage.setItem('username', decoded.user.username)
-    //   sessionStorage.setItem('id', decoded.user.id)
-    //   console.log(sessionStorage)
-    // })
     .then(res => {
         console.log(res.data)
         sessionStorage.setItem('username', res.data.data.username)
