@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 // knowledge on how to add values for total from 
 // https://stackoverflow.com/questions/54121602/displaying-the-sum-of-values-in-react-jsx/54121633
@@ -35,6 +36,9 @@ export default class Overview extends Component {
     return (
       <div>
     <h3>Welcome, {sessionStorage.username}</h3>
+    <Link to='/newexpense'>
+      <h4>Add an expense</h4>
+    </Link>
     <h5>{this.state.expenses.name}</h5>
         <h4>
           You are currently spending 
