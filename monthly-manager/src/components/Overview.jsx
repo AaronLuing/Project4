@@ -14,7 +14,8 @@ export default class Overview extends Component {
       expenses: [],
       budget: '',
       logout: null,
-      deleted: false
+      deleted: false,
+      new: null,
     }
     this.logOut = this.logOut.bind(this)
     this.newExpense = this.newExpense.bind(this)
@@ -59,16 +60,18 @@ export default class Overview extends Component {
     })
   }
 
-  updateRoute() {
-    <Redirect to='/update' />
-  }
   newExpense() {
-    <Redirect to='/newexpense' />
+    this.setState({
+      new: true
+    })
   }
 
   render() {
     if(this.state.logout === true) {
       return <Redirect to='/' />
+    }
+    if(this.state.new === true) {
+      return <Redirect to='/newexpense' />
     }
     if(this.state.deleted === true) {
       window.location.reload(true)
@@ -76,11 +79,12 @@ export default class Overview extends Component {
     return (
       <div>
     <h3>Welcome, {sessionStorage.username}</h3>
-    <Button onClick={this.logOut}>Log Out</Button>
+    <Button onClick={this.logOut} variant='danger'>Log Out</Button><br />
     {/* <button onClick={this.logOut.bind(this)}>Log Out</button> */}
-    <Link to='/newexpense'>
+    <Button onClick={this.newExpense} variant='success'>Add New Monthly Expense</Button>
+    {/* <Link to='/newexpense'>
       <h4>Add an expense</h4>
-    </Link>
+    </Link> */}
     <h5>{this.state.expenses.name}</h5>
         <h4>
           You are currently spending 
@@ -91,7 +95,7 @@ export default class Overview extends Component {
           {this.state.expenses.map((expense) =>
           <li key={expense.id} class="list-group-item">
             {expense.name} | ${expense.amount} | 
-            <button onClick={this.deleteExpense.bind(this, expense.id)}>Delete Item</button>
+            <Button onClick={this.deleteExpense.bind(this, expense.id)} variant='warning'>Delete Item</Button>
           </li>
           )}
         </ul>
