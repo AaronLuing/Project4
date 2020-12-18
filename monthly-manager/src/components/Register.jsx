@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import{Link, Redirect} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button'
+import { Form } from 'react-bootstrap';
 
 export default class Register extends Component {
   constructor(props) {
@@ -55,7 +58,36 @@ export default class Register extends Component {
     }
     return (
       <div>
-        <form id='loginform' onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group>
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type='text'
+              name='username'
+              id='username'
+              onChange={this.handleChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type='text'
+              name='email'
+              id='email'
+              onChange={this.handleChange} />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type='password'
+              name='password'
+              id='password'
+              onChange={this.handleChange}/>
+          </Form.Group>
+          <Button
+            variant='dark'
+            type='submit'>Sign Up</Button>
+        </Form>
+        {/* <form id='loginform' onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username</label>
           <input
             type='text'
@@ -77,7 +109,7 @@ export default class Register extends Component {
           <input
             type='submit'
             value='Submit' />
-        </form>
+        </form> */}
       </div>
     )
   }
