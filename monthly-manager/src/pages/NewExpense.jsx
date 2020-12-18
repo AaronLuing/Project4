@@ -66,15 +66,36 @@ export default class NewExpense extends Component {
         </Link> */}
         <Button onClick={this.backOut}>Back to Overview</Button>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId='itemName'>
+          <Form.Group>
             <Form.Label>Name</Form.Label>
-            <Form.Control type='name' />
+            <Form.Control
+              type='text'
+              name='name'
+              id='name'
+              onChange={this.handleChange}/>
           </Form.Group>
-          <Form.Label>Category</Form.Label>
-          <Form.Control type='category' />
+          <Form.Group>
+            <Form.Label>Category</Form.Label>
+            <Form.Control 
+              type='text'
+              name='category'
+              id='category'
+              onChange={this.handleChange}/>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Amount</Form.Label>
+            <Form.Control 
+              type='number'
+              name='amount'
+              id='amount'
+              onChange={this.handleChange}/>
+          </Form.Group>
+          <Button 
+            variant='secondary'
+            type='submit'>Add Item</Button>
         </Form>
 
-        <form onSubmit={this.handleSubmit}>
+        {/* <form onSubmit={this.handleSubmit}>
         <label htmlFor='name'>Expense Name</label>
         <input
           type='text'
@@ -94,7 +115,7 @@ export default class NewExpense extends Component {
           id='amount'
           onChange={this.handleNumber}/><br />
         <input type='submit' value='Submit'/>
-        </form>
+        </form> */}
       </div>
     )
   }
