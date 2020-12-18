@@ -1,6 +1,10 @@
 import Axios from 'axios'
 import React, { Component } from 'react'
+import { Form } from 'react-bootstrap'
 import { Link, Redirect } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button'
+
 
 export default class NewExpense extends Component {
   constructor(props) {
@@ -14,6 +18,7 @@ export default class NewExpense extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.backOut = this.backOut.bind(this)
   }
 
   handleChange = (event) => {
@@ -43,16 +48,32 @@ export default class NewExpense extends Component {
     })
   }
 
+  backOut() {
+    this.setState({
+      redirect: true,
+    })
+  }
+
   render() {
     if (this.state.redirect === true) {
       return <Redirect to='/overview' />
     }
     return (
       <div>
-        <h1>You reached me!</h1>
-        <Link to='/overview'>
+        <h1 id='sitefont'>Add Expense</h1>
+        {/* <Link to='/overview'>
           take me back
-        </Link>
+        </Link> */}
+        <Button onClick={this.backOut}>Back to Overview</Button>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group controlId='itemName'>
+            <Form.Label>Name</Form.Label>
+            <Form.Control type='name' />
+          </Form.Group>
+          <Form.Label>Category</Form.Label>
+          <Form.Control type='category' />
+        </Form>
+
         <form onSubmit={this.handleSubmit}>
         <label htmlFor='name'>Expense Name</label>
         <input

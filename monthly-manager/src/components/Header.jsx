@@ -4,7 +4,7 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <h1>myMonthlies</h1>
+        <h1 id='sitename'>myMonthlies</h1>
       </div>
     )
   }

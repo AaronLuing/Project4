@@ -22,18 +22,20 @@ export default class Login extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    // Axios.post('http://localhost:8000/user/login', {
-    Axios.post('https://afternoon-savannah-51133.herokuapp.com/user/login', {
+    Axios.post('http://localhost:8000/user/login', {
+    // Axios.post('https://afternoon-savannah-51133.herokuapp.com/user/login', {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     })
     .then(res => {
         console.log(res.data)
-        sessionStorage.setItem('username', this.state.id)
-        sessionStorage.setItem('id', this.state.id)
-        // sessionStorage.setItem('email', res.data.data.email)
-        sessionStorage.setItem('email', this.state.email)
+        sessionStorage.setItem('username', res.data.data.username)
+        // sessionStorage.setItem('username', this.state.username)
+        sessionStorage.setItem('id', res.data.data.id)
+        // sessionStorage.setItem('id', this.state.id)
+        sessionStorage.setItem('email', res.data.data.email)
+        // sessionStorage.setItem('email', this.state.email)
         console.log(sessionStorage)
       })
     .catch(err => {
@@ -59,7 +61,7 @@ export default class Login extends Component {
       <Redirect to="/" />
     }
     return (
-      <div>
+      <div id='loginform'>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username</label>
           <input 

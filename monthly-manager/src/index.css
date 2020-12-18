@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+ul {
+  list-style-type: none;
+}
+#sitename {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 39px;
+  letter-spacing: -2px;
+  word-spacing: -0.6px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: overline rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: small-caps;
+  text-transform: none;
+  text-align: center;
+}
+#sitefont {
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-align: center;
+}
+#loginform {
+  text-align: center;
+}

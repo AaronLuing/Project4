@@ -6,9 +6,9 @@ export default class Startup extends Component {
   render() {
     return (
       <div>
-        <h3>New User?</h3>
+        <h3 id='loginform'>New User?</h3>
         <Register />
-        <h3>Already a User?</h3>
+        <h3 id='loginform'>Already a User?</h3>
         <Login />
       </div>
     )

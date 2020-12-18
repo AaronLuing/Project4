@@ -18,6 +18,7 @@ export default class Overview extends Component {
   componentDidMount() {
     let storage = []
     axios.get('http://localhost:8000/api/v1/budget/')
+    // axios.get('https://afternoon-savannah-51133.herokuapp.com/api/v1/budget')
     .then(res => {
       console.log(res.data.data)
       res.data.data.map((item) => {
@@ -36,6 +37,7 @@ export default class Overview extends Component {
 
   logOut() {
     axios.get('http://localhost:8000/user/logout')
+    // axios.get('https://afternoon-savannah-51133.herokuapp.com/user/logout')
     .then(() => {
       this.setState({
         logout: true,

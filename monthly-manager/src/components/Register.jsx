@@ -55,8 +55,7 @@ export default class Register extends Component {
     }
     return (
       <div>
-        <h6>Create a user</h6>
-        <form onSubmit={this.handleSubmit}>
+        <form id='loginform' onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username</label>
           <input
             type='text'
