@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, Redirect } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Button from 'react-bootstrap/Button'
 
 // knowledge on how to add values for total from 
 // https://stackoverflow.com/questions/54121602/displaying-the-sum-of-values-in-react-jsx/54121633
@@ -14,6 +16,8 @@ export default class Overview extends Component {
       logout: null,
       deleted: false
     }
+    this.logOut = this.logOut.bind(this)
+    this.newExpense = this.newExpense.bind(this)
   }
   componentDidMount() {
     let storage = []
@@ -58,6 +62,9 @@ export default class Overview extends Component {
   updateRoute() {
     <Redirect to='/update' />
   }
+  newExpense() {
+    <Redirect to='/newexpense' />
+  }
 
   render() {
     if(this.state.logout === true) {
@@ -69,7 +76,8 @@ export default class Overview extends Component {
     return (
       <div>
     <h3>Welcome, {sessionStorage.username}</h3>
-    <button onClick={this.logOut.bind(this)}>Log Out</button>
+    <Button onClick={this.logOut}>Log Out</Button>
+    {/* <button onClick={this.logOut.bind(this)}>Log Out</button> */}
     <Link to='/newexpense'>
       <h4>Add an expense</h4>
     </Link>
@@ -79,9 +87,9 @@ export default class Overview extends Component {
           ${this.state.expenses.reduce((totalAmount, expense) => totalAmount + expense.amount, 0)} a month
         </h4>
 
-        <ul>
+        <ul class="list-group">
           {this.state.expenses.map((expense) =>
-          <li key={expense.id}>
+          <li key={expense.id} class="list-group-item">
             {expense.name} | ${expense.amount} | 
             <button onClick={this.deleteExpense.bind(this, expense.id)}>Delete Item</button>
           </li>
